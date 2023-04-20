@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
+
+//  To clear the screen at certain points
+void clearScreen() {
+  system("clear||cls");
+}
+
+
 // initializing the structure of the date of the trip.
 struct date {
         int day;
@@ -52,8 +60,9 @@ int main()
 
     while (work) // To keep the program running until the user wants to exit.
     {
+        
          // Shows the user the options available and ask for the choice.
-        printf("Top Routes in India: \n\n");
+        printf("Top Routes in India you can choose from: \n\n");
 
         for (int i = 0; i < 14; ++i) {
             printf("%d. %s - Rs.%.2f\n",i+1,  routes[i], prices[i]); // shows all the routes available.
@@ -99,15 +108,16 @@ int main()
                 printf("Bookings Cancelled!!");
                 work = false;
             }
-            // Ask the user to make a choice of what they want to do with the tickets.
+            
   
             bool confirm = true;
 
             
             while (confirm)
             { 
+                // Ask the user to make a choice of what they want to do with the tickets.
 
-    printf("What would you like to do?\n");
+    printf("\n\nWhat would you like to do?\n");
     printf("1. Book another ticket\n");
     printf("2. View all tickets\n");
     printf("3. Exit\n");
@@ -120,6 +130,7 @@ int main()
      {
         case 1:
             // Book another ticket
+            clearScreen();  // to clear the screen
             confirm = false;
             break;
         case 2:
@@ -129,6 +140,7 @@ int main()
                 printf("\tTicket No. %d\t From: %s\t Dated: %d/%d/%d\n",
                        i+1, routes[choice_list[i]], trip[i].day, trip[i].month, trip[i].year);
             }
+            
             break;
         case 3:
             // Exit
@@ -137,6 +149,7 @@ int main()
             printf("\nThank you for using BLUE-BUS Online Ticket Generator!\n");
             break;
         default:
+            // For invalid user input
             printf("\nInvalid choice. Please enter a valid option.\n");
             break;
     
