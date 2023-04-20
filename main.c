@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 // initializing the structure of the date of the trip.
 struct date {
         int day;
@@ -44,7 +45,7 @@ int main()
     
     bool work = true; // To keep the program running until the user wants to exit.
 
-    printf("                                            ------------------------------> BLUE-BUS ONLINE TICKET GENERATOR(23July) <------------------------------\n\n");
+    printf("                                            ------------------------------> BLUE-BUS ONLINE TICKET GENERATOR <------------------------------\n\n");
     printf("                                                                            -> Book Bus Tickets in India <-\n\n");
 
 
@@ -55,7 +56,7 @@ int main()
         printf("Top Routes in India: \n\n");
 
         for (int i = 0; i < 14; ++i) {
-            printf("%d. %s - Rs.%.2f\n",i+1,  routes[i], prices[i]);
+            printf("%d. %s - Rs.%.2f\n",i+1,  routes[i], prices[i]); // shows all the routes available.
         }
 
         printf("\nWhere do you wish to travel? [Enter the number of the route] \n");
@@ -64,19 +65,19 @@ int main()
 
         printf("Okay! So you're choosing to go from %s.\n", routes[choice-1]);
 
-        printf("When do you wish to go? [Enter date in the format dd/mm/yyyy] \n");
+        printf("When do you wish to go? [Enter date in the format dd/mm/yyyy] \n"); //Ask for the date of the trip
         scanf("%d/%d/%d", &trip[k].day, &trip[k].month, &trip[k].year);
 
         printf("\nAlright, the date is: %d/%d/%d\n", trip[k].day, trip[k].month, trip[k].year);
 
-        printf("How many passengers do you have? \n");
+        printf("How many passengers do you have? \n"); // number of passengers
         scanf("%d", &num_passengers);
 
         printf("\nAlright, you're booking %d passengers.\n", num_passengers);
         
         // Calculating the total price of the tickets.
         float total_price = num_passengers * prices[choice-1];
-        printf("\nThe total price for %d passengers is Rs.%.2f\n", num_passengers, total_price);
+        printf("\nThe total price for %d passengers is Rs.%.2f\n", num_passengers, total_price); // total price
 
 
         // Confirms the user's booking.
@@ -99,29 +100,49 @@ int main()
                 work = false;
             }
             // Ask the user to make a choice of what they want to do with the tickets.
-            int make;
-            printf("Do you wish:\n1.Book Another Ticket\n2.View All Tickets\n3.Exit\n-> ");
-            scanf("%d", &make);
+  
+            bool confirm = true;
 
-
-            switch (make)
-            {
-            case 2:
-               // Displaying the tickets.
-               for(int i = 0; i < k; i++)
-                printf("Ticket No. %d\t From: %s\t Dated: %d/%d/%d\n\n",i+1, routes[choice_list[i]], trip[i].day, trip[i].month, trip[i].year);
-                
-               
-            case 3:
-                work = false;
-                
             
-            default:
-            printf("Do you wish to:\n1.Book Another Ticket\n2.View All Tickets\n3.Exit\n-> ");
-            scanf("%d", &make);
-        
-            }
+            while (confirm)
+            { 
 
+    printf("What would you like to do?\n");
+    printf("1. Book another ticket\n");
+    printf("2. View all tickets\n");
+    printf("3. Exit\n");
+    printf("Enter your choice: ");
+    
+    int make;
+    scanf("%d", &make);
+
+    switch (make)
+     {
+        case 1:
+            // Book another ticket
+            confirm = false;
+            break;
+        case 2:
+            // View all tickets
+            printf("Here are all your booked tickets:\n");
+            for (int i = 0; i < k; i++) {
+                printf("\tTicket No. %d\t From: %s\t Dated: %d/%d/%d\n",
+                       i+1, routes[choice_list[i]], trip[i].day, trip[i].month, trip[i].year);
+            }
+            break;
+        case 3:
+            // Exit
+            confirm = false;
+            work = false;
+            printf("\nThank you for using BLUE-BUS Online Ticket Generator!\n");
+            break;
+        default:
+            printf("\nInvalid choice. Please enter a valid option.\n");
+            break;
+    
+}
+
+            }
             
             
             
