@@ -171,7 +171,7 @@ int main()
                            
                        }
                        k--;
-                       k = k-1;
+                       
                        
                        break;
 
