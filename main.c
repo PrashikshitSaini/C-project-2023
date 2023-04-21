@@ -148,6 +148,35 @@ int main()
             work = false;
             printf("\nThank you for using BLUE-BUS Online Ticket Generator!\n");
             break;
+        //create a case for only deleting the tickets from the array of structure.
+        case 4:
+            // Delete tickets
+                // Delete the tickets
+                printf("Here are all your booked tickets:\n");
+                for (int i = 0; i < k; i++) {
+                    printf("\tTicket No. %d\t From: %s\t Dated: %d/%d/%d\n",
+                       i+1, routes[choice_list[i]], trip[i].day, trip[i].month, trip[i].year);
+                       }
+                       printf("\n\n");
+                       
+                       printf("Enter the ticket number you wish to delete: "); 
+                       int delete;
+                       scanf("%d", &delete);
+                       printf("\n");
+                       
+                    // To delete the tickets
+                       for (int i = delete-1; i < k; i++) {
+                           choice_list[i] = choice_list[i+1];
+                           trip[i] = trip[i+1];
+                           
+                       }
+                       k--;
+                       k = k-1;
+                       
+                       break;
+
+
+
         default:
             // For invalid user input
             printf("\nInvalid choice. Please enter a valid option.\n");
